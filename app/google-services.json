@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "391919822689",
+    "firebase_url": "https://thehub-55aa1.firebaseio.com",
+    "project_id": "thehub-55aa1",
+    "storage_bucket": "thehub-55aa1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391919822689:android:ddb513631dffa2c9",
+        "android_client_info": {
+          "package_name": "com.gtae.app.thehub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391919822689-fcii0i71a4ljncf3no4u62de6ibe32s0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gtae.app.thehub",
+            "certificate_hash": "86d4ea9f014920aad7794b654c2ce0d2479a36a6"
+          }
+        },
+        {
+          "client_id": "391919822689-0n807gb8po3f39r5sqnnqf01mi15taeu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJaqwAIlxT973ePSTiKDkJSvYjfMwKRtc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391919822689-0n807gb8po3f39r5sqnnqf01mi15taeu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
