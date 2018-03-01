@@ -15,18 +15,13 @@ public class CommunityData {
     {
 
     }
-    CommunityData(String id, String name, String admin)
-    {
-        this.id=id;
-        this.name=name;
-        this.admin=admin;
-    }
-    CommunityData( String userid,String name,boolean type,boolean search)
+    CommunityData( String name,boolean type,boolean search,String userid)
     {
         this.userid=userid;
         this.name=name;
         this.type=type;
         this.searchable=search;
+        this.id=userid;
     }
 
     public String getId() {

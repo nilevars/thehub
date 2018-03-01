@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import android.R.attr.name
+import android.content.Intent
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_community.*
 
@@ -17,6 +18,10 @@ class CommunityActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
+        button2.setOnClickListener {
+            val intent= Intent(this,SelectCommunityActivity::class.java)
+            startActivity(intent)
+        }
 
         submit.setOnClickListener {
             var name = cname.text.toString()
@@ -37,7 +42,7 @@ class CommunityActivity : AppCompatActivity() {
     }
 
     private fun writeNewUser(userId: String, name: String,admin :String?) {
-        var communityData = CommunityData(userId,name,false,false)
+        var communityData = CommunityData(name,false,false,userId)
         var ref=mDatabase!!.child("community").push().setValue(communityData)
         if(ref!=null)
         {
@@ -45,7 +50,5 @@ class CommunityActivity : AppCompatActivity() {
             cname.setText("")
 
         }
-
-        //mDatabase!!.child("community").child(userId).setValue(communityData)
     }
 }
