@@ -195,7 +195,7 @@ class PostImageActivity : AppCompatActivity() {
             }
 
 
-           
+
         }
         return super.onOptionsItemSelected(item)
     }
