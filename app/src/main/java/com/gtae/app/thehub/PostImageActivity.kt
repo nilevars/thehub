@@ -26,6 +26,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -151,13 +152,13 @@ class PostImageActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.done) {
-            progressDialog.isIndeterminate = true
-            progressDialog.setTitle("Uploading....")
-            progressDialog.show()
             val t = title.text.toString()
             val d = desc.text.toString()
             if(!t.equals(""))
             {
+                progressDialog.isIndeterminate = true
+                progressDialog.setTitle("Uploading....")
+                progressDialog.show()
                 val image = (imageView.drawable as BitmapDrawable).bitmap
                 val byteArrayOutputStream = ByteArrayOutputStream()
                 image.compress(Bitmap.CompressFormat.PNG, 50, byteArrayOutputStream)
@@ -172,7 +173,7 @@ class PostImageActivity : AppCompatActivity() {
                 var mAuth= FirebaseAuth.getInstance()
                 val user = mAuth!!.getCurrentUser()
                 var uid = user!!.uid
-                var filename="IMG _"+ timestamp + ".png"
+                var filename="IMG_"+ timestamp + ".png"
                 // Create a reference to "mountains.jpg"
                 var mountainsRef = storageRef!!.child("forum/"+uid+"/"+filename)
 
@@ -185,8 +186,9 @@ class PostImageActivity : AppCompatActivity() {
                 }
                 uploadTask.addOnSuccessListener {
                     Log.i("status","Success")
-                    Toast.makeText(this@PostImageActivity,"Success",Toast.LENGTH_LONG).show()
-                    progressDialog.dismiss()
+                    Toast.makeText(this@PostImageActivity,"Image Uploaded Success",Toast.LENGTH_LONG).show()
+                    writeNewUData(uid,t,d,1,"forum/"+uid+"/"+filename)
+
                 }
             }
             else
@@ -198,6 +200,22 @@ class PostImageActivity : AppCompatActivity() {
 
         }
         return super.onOptionsItemSelected(item)
+    }
+    private fun writeNewUData(userId: String, title: String,desc :String,type:Int,filename:String) {
+        var mDatabase: DatabaseReference? = FirebaseDatabase.getInstance().getReference()
+        var forumData = ForumData(title,desc,filename,type,userId)
+        var ref=mDatabase!!.child("forum").push().setValue(forumData)
+        if(ref!=null)
+        {
+            Toast.makeText(this@PostImageActivity, "Data inserted successfully", Toast.LENGTH_LONG).show()
+            progressDialog.dismiss()
+            imageView.visibility = View.GONE
+            linearLayout.visibility = View.VISIBLE
+            imageView.setImageBitmap(null)
+            this.title.setText("")
+            this.desc.setText("")
+
+        }
     }
 
 

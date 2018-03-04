@@ -10,14 +10,16 @@ public class ForumData {
     String image;
     String id;
     int type;
-    int like;
+ //   int like;
     String time;
-    ForumData(String title, String description, String image, int type)
+    String uid;
+    ForumData(String title, String description, String image, int type,String uid)
     {
         this.title=title;
         this.description=description;
         this.image=image;
         this.type=type;
+        this.uid=uid;
     }
     ForumData(String id, String title, String description, String image, int type, String time)
     {
@@ -36,7 +38,7 @@ public class ForumData {
         this.image=image;
         this.type=type;
         this.time=time;
-        this.like=like;
+       // this.like=like;
     }
     String getTitle()
     {
@@ -62,7 +64,7 @@ public class ForumData {
         return type;
     }
 
-    public int getLike() {
+    /*public int getLike() {
         return like;
-    }
+    }*/
 }

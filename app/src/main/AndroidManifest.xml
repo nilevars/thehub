@@ -32,18 +32,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <activity android:name=".MainActivity" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Dark">
-
-        </activity>
-        <activity android:name=".HomeActivity"></activity>
+            android:theme="@style/AppTheme.Dark"></activity>
+        <activity android:name=".HomeActivity" />
         <activity
             android:name=".CommunityActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity android:name=".SelectCommunityActivity" />
-        <activity android:name=".PostImageActivity"
+        <activity
+            android:name=".PostImageActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,6 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ForumHomActivity"></activity>
     </application>
 
 </manifest>
