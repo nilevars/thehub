@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Thehub</string>
+    <string name="title_post">Title of Your Post</string>
+    <string name="tap_to_add_description">Tap to add description</string>
+    <string name="write">Write Answer</string>
 </resources>

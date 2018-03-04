@@ -2,6 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gtae.app.thehub">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,24 +23,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Light.ActionBar">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.gtae.app.thehub.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.Dark">
+
+        </activity>
+        <activity android:name=".HomeActivity"></activity>
+        <activity
+            android:name=".CommunityActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity android:name=".SelectCommunityActivity" />
+        <activity android:name=".PostImageActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity" >
-
-        </activity>
-        <activity
-            android:name=".CommunityActivity"
-            android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".SelectCommunityActivity"
-            ></activity>
     </application>
 
 </manifest>
