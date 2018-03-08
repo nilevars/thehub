@@ -116,7 +116,7 @@ class LoginActivity : AppCompatActivity() , GoogleApiClient.ConnectionCallbacks,
     private fun updateUI(user: FirebaseUser?) {
        // Snackbar.make(findViewById(R.id.main_layout), "Authenticated."+user.toString(), Snackbar.LENGTH_SHORT).show();
         if(user!=null) {
-            val intent= Intent(this,CommunityActivity::class.java)
+            val intent= Intent(this,SelectCommunityActivity::class.java)
             startActivity(intent)
         }
     }

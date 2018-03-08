@@ -13,6 +13,10 @@ public class ForumData {
  //   int like;
     String time;
     String uid;
+    ForumData()
+    {
+
+    }
     ForumData(String title, String description, String image, int type,String uid)
     {
         this.title=title;

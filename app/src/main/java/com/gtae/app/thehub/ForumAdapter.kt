@@ -5,6 +5,7 @@ package com.gtae.app.thehub
  */
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.storage.FirebaseStorage
 
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -28,9 +32,12 @@ class ForumAdapter(internal var context: Context, internal var forumDatas: List<
     private val PHOTO = 2
     private val JOKES = 3
 
+    lateinit var storage: FirebaseStorage
+
 
     init {
         inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        storage = FirebaseStorage.getInstance();
     }
 
     override fun getItemCount(): Int {
@@ -83,19 +90,28 @@ class ForumAdapter(internal var context: Context, internal var forumDatas: List<
                 holder2.title.text = forumDatas[position].getTitle()
                 holder2.desc.text = forumDatas[position].getDescription()
                 holder2.time.text = forumDatas[position].getTime()
-                val hub = context.getSharedPreferences("com.example.ae.yourhub", Context.MODE_PRIVATE)
-                holder2.comm.text = hub.getString("community", "")
                 holder2.post_id.text = forumDatas[position].getId()
                 holder2.url = forumDatas[position].getImage()
-                Picasso.with(context).load(forumDatas[position].getImage()).resize(400, 400).centerCrop().into(holder2.imageView, object : Callback {
-                    override fun onSuccess() {
-                        println("loaded Image")
-                    }
 
-                    override fun onError() {
-                        println("Unable to load Image")
-                    }
+                val storageRef = storage.reference
+                val imgRef = storageRef.child(holder2.url)
+
+                imgRef.getDownloadUrl().addOnSuccessListener(OnSuccessListener<Any> { uri ->
+
+                    Picasso.with(context).load(uri.toString()).resize(400, 400).centerCrop().into(holder2.imageView, object : Callback {
+                        override fun onSuccess() {
+                            println("loaded Image")
+                        }
+
+                        override fun onError() {
+                            println("Unable to load Image")
+                        }
+                    })
+
+                }).addOnFailureListener(OnFailureListener {
+                    // Handle any errors
                 })
+
                 setScaleAnimation(holder2.imageView)
             }
         }

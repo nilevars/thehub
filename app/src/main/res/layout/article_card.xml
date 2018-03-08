@@ -39,7 +39,7 @@
                 android:layout_height="150dp"
                 android:layout_alignParentTop="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/fb_icon"
+                android:src="@drawable/cartoon"
                 android:visibility="gone"/>
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="@string/title"
+                android:text="Title"
                 android:textColor="#222"
                 android:textStyle="bold"
                 android:textSize="22dp" />
@@ -59,7 +59,7 @@
                 android:layout_below="@+id/title"
                 android:maxLines="3"
                 android:padding="8dp"
-                android:text="@string/description"
+                android:text="Description"
                 android:textColor="#666"
                 android:textSize="14dp"
                 android:id="@+id/description"/>
@@ -93,7 +93,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:padding="5dp"
-                    android:text="@string/comment"
+                    android:text="Comment"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/cyan_900"
@@ -109,7 +109,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:padding="5dp"
-                    android:text="@string/share"
+                    android:text="Share"
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/cyan_900"

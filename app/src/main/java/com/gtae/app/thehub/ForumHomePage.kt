@@ -1,39 +1,54 @@
 package com.gtae.app.thehub
 
-import android.support.v7.app.AppCompatActivity
+/**
+ * Created by A E on 06-Mar-18.
+ */
+import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ProgressBar
 import com.google.firebase.database.*
+
 import java.util.ArrayList
 
-class ForumHomActivity : AppCompatActivity() {
+class ForumHomePage : Fragment() {
 
-    private val mLayoutManager: RecyclerView.LayoutManager? = null
+    lateinit internal var context: Context
+    private var mLayoutManager: RecyclerView.LayoutManager? = null
     private val forumDatas = ArrayList<ForumData>()
     internal lateinit var forumAdapter: ForumAdapter
     private var gm: StaggeredGridLayoutManager? = null
     private var mPostReference: DatabaseReference? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.photo_fragment)
 
-        mPostReference = FirebaseDatabase.getInstance().getReference()
-                .child("forum");
 
-        val recyclerView = findViewById(R.id.recycler_view) as RecyclerView
-        forumAdapter = ForumAdapter(this, forumDatas)
 
-        gm = StaggeredGridLayoutManager(2, 1)
-        recyclerView.layoutManager = gm
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        context = activity
+
+        val view = inflater!!.inflate(R.layout.photo_fragment, container, false)
+        val recyclerView = view.findViewById(R.id.recycler_view) as RecyclerView
+        mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        forumAdapter = ForumAdapter(activity, forumDatas)
         recyclerView.adapter = forumAdapter
 
+        mPostReference = FirebaseDatabase.getInstance().getReference()
+                .child("forum")
         dataFetch()
-    }
 
+        return view
+    }
     internal fun dataFetch() {
 
         val postListener = object : ValueEventListener {
@@ -62,4 +77,9 @@ class ForumHomActivity : AppCompatActivity() {
 
     }
 
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        activity.title = "Forum"
+    }
 }

@@ -187,7 +187,7 @@ class PostImageActivity : AppCompatActivity() {
                 uploadTask.addOnSuccessListener {
                     Log.i("status","Success")
                     Toast.makeText(this@PostImageActivity,"Image Uploaded Success",Toast.LENGTH_LONG).show()
-                    writeNewUData(uid,t,d,1,"forum/"+uid+"/"+filename)
+                    writeNewUData(uid,t,d,2,"forum/"+uid+"/"+filename)
 
                 }
             }

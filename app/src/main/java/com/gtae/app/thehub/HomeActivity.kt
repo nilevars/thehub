@@ -32,11 +32,11 @@ class HomeActivity : AppCompatActivity() {
 
 
         home_icon.setColorFilter(resources.getColor(R.color.colorAccent))
-       // val myf = HomePage()
+        val myf = ForumHomePage()
         val transaction = supportFragmentManager.beginTransaction()
-      //  transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-      //  transaction.add(R.id.content, myf)
-      //  transaction.commit()
+        //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+        transaction.add(R.id.content, myf)
+        transaction.commit()
 
         /*comm.setOnClickListener {
             setBlack()

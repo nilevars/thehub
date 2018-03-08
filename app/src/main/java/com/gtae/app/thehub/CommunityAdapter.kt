@@ -25,10 +25,6 @@ import android.support.annotation.NonNull
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 
-
-
-
-
 class CommunityAdapter(internal var context: Context, internal var communityDatas: List<CommunityData>) : RecyclerView.Adapter<CommunityAdapter.ViewHolder>() {
     internal lateinit var rowView: View
     internal var result: ArrayList<HashMap<String, Any>>? = null
@@ -66,15 +62,11 @@ class CommunityAdapter(internal var context: Context, internal var communityData
         //firebase Storage access code
         val storageRef = storage.reference
         val spaceRef = storageRef.child("diamonds.jpg")
-        //var path=spaceRef.downloadUrl;
-        //Log.i("info","Path is "+spaceRef)
-        var s="https://firebasestorage.googleapis.com/v0/b/thehub-55aa1.appspot.com/o/diamonds.jpg?alt=media&token=68f7d8f9-f8d6-4c57-993a-7dc903f07f70";
+
+      //  var s="https://firebasestorage.googleapis.com/v0/b/thehub-55aa1.appspot.com/o/diamonds.jpg?alt=media&token=68f7d8f9-f8d6-4c57-993a-7dc903f07f70";
 
 
-        // Load the image using Glide
-        // Alternatively way to get download URL
-        //var s2=storageRef.child("diamonds.jpg").downloadUrl.result
-        //Log.i("info","path: "+s2)
+
 
 
 
@@ -94,19 +86,10 @@ class CommunityAdapter(internal var context: Context, internal var communityData
             })
 
         }).addOnFailureListener(OnFailureListener {
-            // Handle any errors
         })
 
 
-        /*Picasso.with(context).load(s).resize(400, 400).centerCrop().into(holder.img, object : Callback {
-            override fun onSuccess() {
-                println("loaded Image")
-            }
 
-            override fun onError() {
-                println("Unable to load Image")
-            }
-        })*/
         holder.linearLayout.setOnClickListener {
             val intent = Intent(context, HomeActivity::class.java)
             context.startActivity(intent)
